@@ -24,3 +24,18 @@ class ForecastData(models.Model):
     class Meta:
         managed = False # 告訴 Django : 這張表格不需要管理
         db_table = 'forecast_data'
+
+class WeatherObservation(models.Model):
+    city = models.CharField(max_length=100)
+    temperature = models.FloatField()
+    windspeed = models.FloatField()
+    observed_at = models.DateTimeField()
+
+    class Meta:
+        db_table = 'weather_observation'
+        indexes = [
+            models.Index(fields=['city', 'observed_at']),
+        ]
+
+    def __str__(self):
+        return f"{self.city} @ {self.observed_at}"
