@@ -1,5 +1,5 @@
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time
 import pytz
 from django.core.paginator import Paginator, EmptyPage
 from ..models import WeatherObservation
@@ -77,13 +77,24 @@ def get_weather_observation_records(city=None, start_date=None, end_date=None,
                            ordering='-observed_at', page=1, page_size=10):
     queryset = WeatherObservation.objects.all().order_by(ordering)
     
+
     # 過濾條件
+    if start_date:
+        try:
+            start_datetime = datetime.combine(datetime.strptime(start_date, "%Y-%m-%d").date(), time.min)
+            queryset = queryset.filter(observed_at__gte=start_datetime)
+        except ValueError:
+            return None, "Invalid start_date format"
+
+    if end_date:
+        try:
+            end_datetime = datetime.combine(datetime.strptime(end_date, "%Y-%m-%d").date(), time.max)
+            queryset = queryset.filter(observed_at__lte=end_datetime)
+        except ValueError:
+            return None, "Invalid end_date format"
+        
     if city:
         queryset = queryset.filter(city=city)
-    if start_date:
-        queryset = queryset.filter(observed_at__date__gte=start_date)
-    if end_date:
-        queryset = queryset.filter(observed_at__date__lte=end_date)
     
     # 分頁處理
     paginator = Paginator(queryset, page_size)
