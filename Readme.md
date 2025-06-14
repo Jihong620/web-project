@@ -54,7 +54,12 @@ React 前端串接 Django API，實現資料視覺化。
 內容摘要：
 - 串接 Django 提供的後端 API  
 - 處理資料轉換與格式整理  
-- 繪製趨勢圖  
+
+### 3️⃣ React 新手實戰：用天氣資料畫出趨勢圖（下篇）  
+👉 [閱讀文章](https://medium.com/@Alan620/react-%E6%96%B0%E6%89%8B%E5%AF%A6%E6%88%B0-%E7%94%A8%E5%A4%A9%E6%B0%A3%E8%B3%87%E6%96%99%E7%95%AB%E5%87%BA%E8%B6%A8%E5%8B%A2%E5%9C%96-%E4%B8%8B%E7%AF%87-4f6c84d810a3)  
+內容摘要：
+- 模組化拆分 components、pages、services 架構
+- 完整串接前後端，完成趨勢圖網頁
 
 ---
 

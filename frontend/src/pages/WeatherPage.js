@@ -32,15 +32,11 @@ const WeatherPage = () => {
     setLoading(true);
     setError(null);
     try {
-      console.log("📤 發送 API 前的參數：", { city, start, end });
-
       const data = await fetchWeatherData({
         city,
         startDate: start,
         endDate: end
       });
-
-      console.log("📥 從後端取得的資料：", data);
 
       setWeatherData(data.results);
     } catch (err) {

@@ -13,7 +13,6 @@ import {
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
 
-// 註冊 Chart.js 組件
 ChartJS.register(
   CategoryScale,
   LinearScale,
